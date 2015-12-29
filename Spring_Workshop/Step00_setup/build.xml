@@ -1,0 +1,78 @@
+<project name="SpringHackathon" default="setup" basedir=".">
+	<description>Simple build file to setup properties for project steps</description>
+
+	<property name="setupFldr" location="." />
+	<property name="step01" location="../Step01_Hello_World" />
+	<property name="step02" location="../Step02_DB_and_API" />
+	<property name="step03" location="../Step03_APIs" />
+	<property name="step04" location="../Step04_Angular" />
+	<property name="step05" location="../Step05_Menu_and_Navigation" />
+	<property name="step06" location="../Step06_Style_and_Services" />
+	<property name="step07" location="../Step07_Views_and_Login" />
+	<property name="step08" location="../Step08_Sell_Items" />
+	<property name="step09" location="../Step09_Edit_and_Cancel" />
+	<property name="step10" location="../Step10_Final_Product" />
+
+	<target name="setup">
+		<copy todir="${step01}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step02}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step03}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step04}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step05}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step06}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step07}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step08}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step09}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+		<copy todir="${step10}/src" overwrite="true">
+			<fileset dir="${setupFldr}">
+				<include name="db.properties" />
+				<type type="file" />
+			</fileset>
+		</copy>
+	</target>
+</project>
