@@ -1,10 +1,37 @@
-var app = angular.module('aOne', [])
+'use strict';
 
-.controller('browseController', function($http, $scope) {
+var app = angular
+  .module('aOne', [
+    'ngAnimate',    
+    'ngResource',
+    'ngRoute',    
+    'firebase',
+    'toaster',
+    'angularMoment',
+    'toaster'
+  ])
 
-	$http.get('/item').success(function(response, err) {
-
-		console.log('response looks like-', response)
-		$scope.items = response
-	})
-});
+  .config(function ($routeProvider) {
+    $routeProvider      
+      .when('/', {
+        templateUrl: 'views/browse.html',
+        controller: 'BrowseController'     
+      })
+      .when('/browse/:itemId', {
+        templateUrl: 'views/browse.html',
+        controller: 'BrowseController'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'AuthController'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'AuthController'
+      })
+      
+      
+      .otherwise({
+        redirectTo: '/'
+      });
+  });
