@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.oracle</groupId>
 	<artifactId>spring</artifactId>
-	<name>Spring_Workshop</name>
+	<name>Step02_DB_and_API</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
