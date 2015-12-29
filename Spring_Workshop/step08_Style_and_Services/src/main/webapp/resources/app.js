@@ -1,10 +1,22 @@
-var app = angular.module('aOne', [])
+var app = angular
+  .module('aOne', [ 'ngRoute', 'angularMoment', 'ngResource'])
+  
 
-.controller('browseController', function($http, $scope) {
+app.config(function ($routeProvider) {
+    $routeProvider      
+      .when('/', {
+        templateUrl: './browse.html',
+        controller: 'browseController'     
+      })
+      .when('/browse/:itemId', {
+        templateUrl: './browse.html',
+        controller: 'browseController'     
+      })
+	
 
-	$http.get('/item').success(function(response, err) {
 
-		console.log('response looks like-', response)
-		$scope.items = response
-	})
-});
+})
+
+
+
+
