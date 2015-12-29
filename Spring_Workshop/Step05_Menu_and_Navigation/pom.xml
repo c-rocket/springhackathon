@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.oracle</groupId>
 	<artifactId>spring</artifactId>
-	<name>Spring_Workshop</name>
+	<name>Step05_Menu_and_Navigation</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
