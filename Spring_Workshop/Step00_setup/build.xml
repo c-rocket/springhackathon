@@ -14,12 +14,7 @@
 	<property name="step10" location="../Step10_Final_Product" />
 
 	<target name="setup">
-		<copy todir="${step01}/src" overwrite="true">
-			<fileset dir="${setupFldr}">
-				<include name="db.properties" />
-				<type type="file" />
-			</fileset>
-		</copy>
+		<!-- STEP ! DOES NOT NEED THE DB For Testing -->
 		<copy todir="${step02}/src" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
