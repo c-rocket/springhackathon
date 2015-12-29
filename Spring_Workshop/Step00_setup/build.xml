@@ -15,55 +15,55 @@
 
 	<target name="setup">
 		<!-- STEP ! DOES NOT NEED THE DB For Testing -->
-		<copy todir="${step02}/src" overwrite="true">
+		<copy todir="${step02}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step03}/src" overwrite="true">
+		<copy todir="${step03}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step04}/src" overwrite="true">
+		<copy todir="${step04}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step05}/src" overwrite="true">
+		<copy todir="${step05}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step06}/src" overwrite="true">
+		<copy todir="${step06}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step07}/src" overwrite="true">
+		<copy todir="${step07}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step08}/src" overwrite="true">
+		<copy todir="${step08}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step09}/src" overwrite="true">
+		<copy todir="${step09}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
 			</fileset>
 		</copy>
-		<copy todir="${step10}/src" overwrite="true">
+		<copy todir="${step10}/src/test/java" overwrite="true">
 			<fileset dir="${setupFldr}">
 				<include name="db.properties" />
 				<type type="file" />
