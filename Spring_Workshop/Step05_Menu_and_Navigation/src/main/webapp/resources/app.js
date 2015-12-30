@@ -1,10 +1,11 @@
 'use strict'
-
+var baseUrl;
 var app = angular.module('aOne', [ 'ngRoute' ])
 
 app.controller('browseController', function($http, $scope) {
+	baseUrl = angular.element($('#baseUrl')).val();
 
-	var itemStatus = $http.get('/item').then(function(response, err) {
+	var itemStatus = $http.get(baseUrl + '/items').then(function(response, err) {
 
 		if (err) {
 			console.log('error is', err)
@@ -19,7 +20,7 @@ app.controller('browseController', function($http, $scope) {
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl : './browse.html',
+		templateUrl : angular.element($('#baseUrl')).val() + 'resources/views/browse.jsp',
 		controller : 'browseController'
 	})
 
