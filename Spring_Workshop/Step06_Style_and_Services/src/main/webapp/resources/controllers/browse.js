@@ -3,7 +3,7 @@
 app.controller('browseController', function($http, $scope, $routeParams, Item) {
 	$scope.searchItem = ''
 
-	var itemStatus = $http.get('/item').then(function(response, err) {
+	var itemStatus = $http.get(baseUrl + '/item').then(function(response, err) {
 
 		if (err) {
 			console.log('error is', err)

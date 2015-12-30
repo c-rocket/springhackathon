@@ -5,7 +5,7 @@
 app.factory('Item', function($resource) {
 
 	console.log('Item factory loaded')
-return $resource('/item/:itemId', {},
+return $resource(baseUrl + '/item/:itemId', {},
     {
         'findItem': {method: 'GET'},
         'deleteItem': {method: 'DELETE',params: {itemId: '@id'}},

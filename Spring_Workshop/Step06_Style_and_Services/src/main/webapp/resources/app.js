@@ -1,22 +1,13 @@
-var app = angular
-  .module('aOne', [ 'ngRoute', 'angularMoment', 'ngResource'])
-  
+var baseUrl;
+var app = angular.module('aOne', [ 'ngRoute', 'angularMoment', 'ngResource' ])
 
-app.config(function ($routeProvider) {
-    $routeProvider      
-      .when('/', {
-        templateUrl: './browse.html',
-        controller: 'browseController'     
-      })
-      .when('/browse/:itemId', {
-        templateUrl: './browse.html',
-        controller: 'browseController'     
-      })
-	
-
-
+app.config(function($routeProvider) {
+	baseUrl = angular.element($('#baseUrl')).val();
+	$routeProvider.when('/', {
+		templateUrl : baseUrl + 'resources/views/browse.jsp',
+		controller : 'browseController'
+	}).when('/browse/:itemId', {
+		templateUrl : baseUrl + 'resources/views/browse.jsp',
+		controller : 'browseController'
+	})
 })
-
-
-
-
