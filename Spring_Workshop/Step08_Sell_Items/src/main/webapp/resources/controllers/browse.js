@@ -23,7 +23,7 @@ app.controller('browseController', function($http, $scope, $routeParams, Item, I
 			console.log('selecteditem is', $scope.selectedItem)
 		})
 
-		$http.get('/offer/' + $routeParams.itemId).success(function(offers) {
+		$http.get(baseUrl + '/offer/' + $routeParams.itemId).success(function(offers) {
 			$scope.offers = offers
 			console.log('offers for selecteditem=', offers)
 		})

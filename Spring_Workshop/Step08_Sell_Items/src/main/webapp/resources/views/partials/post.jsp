@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="modal fade" id="posModal" ng-controller="itemController">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -20,8 +21,6 @@
 						<input type="number" min="1" step="1" ng-model="newitem.price" class="form-control" placeholder="Item price"
 							required>
 						<br>
-						<!--                         <input type="submit" value="Post Now" class="btn btn-warning">
- -->
 						<input type="submit" value="Post" class="btn btn-default">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</form>

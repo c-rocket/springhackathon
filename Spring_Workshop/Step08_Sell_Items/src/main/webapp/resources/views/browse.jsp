@@ -13,7 +13,7 @@ Note:
 if there is a gap under the navbar, its because of the navbar margin_bottom property. Set that to 0px in css
 If the color of price etc is NOT BLACK, add css for anchor tag 
  -->
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="row">
 	
@@ -47,7 +47,7 @@ If the color of price etc is NOT BLACK, add css for anchor tag
 				            	            
 				        </div>
 				        <div class="payment">
-				        	<div>${{item.ITEM_PRICE}}</div>
+				        	<div>&nbsp;{{item.ITEM_PRICE}}</div>
 				        	<span class="label status {{item.ITEM_STATUS}}">{{item.ITEM_STATUS}}</span>		        	
 				        </div>
 				    </div>		    	
@@ -62,7 +62,7 @@ If the color of price etc is NOT BLACK, add css for anchor tag
 	<!-- RIGHT PANEL -->
 	<div class="col-md-6">
 		<div ng-show="listMode">
-			<img src="images/forsale.jpg" class="img-responsive img-browse">
+			<img src="<c:url value='/resources/images/forsale.jpg'/>" class="img-responsive img-browse">
 		</div>
 		
 		<div ng-show="!listMode">
@@ -81,7 +81,7 @@ If the color of price etc is NOT BLACK, add css for anchor tag
         </div>
         <div class="col-md-4 title">
             <div class="price-tag">
-                ${{ selectedItem.ITEM_PRICE }}
+                &nbsp;{{ selectedItem.ITEM_PRICE }}
                 
                 
                 <div>
@@ -139,7 +139,7 @@ If the color of price etc is NOT BLACK, add css for anchor tag
 									<div class="col-md-10">
 										<button ng-if="offer.OFFER_STATUS=='accepted'" class="btn btn-success btn-xs disabled">Sold</button>
 										
-										<button>Accept - ${{offer.OFFER_AMOUNT}}</button>											
+										<button>Accept - &nbsp;{{offer.OFFER_AMOUNT}}</button>											
 										
 
 										<img ng-src="{{offer.USER_GRAVATAR}}" class="img-circle offer gravatar">

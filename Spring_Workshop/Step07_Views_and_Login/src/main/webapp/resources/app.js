@@ -16,8 +16,7 @@ var app = angular.module('aOne', [ 'ngAnimate', 'ngResource', 'ngRoute', 'angula
 	}).when('/login', {
 		templateUrl : baseUrl + 'resources/views/login.jsp',
 		controller : 'AuthController'
-	})
-	.otherwise({
+	}).otherwise({
 		redirectTo : '/'
 	});
 });
