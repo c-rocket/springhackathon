@@ -71,8 +71,8 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 			p2 : $scope.uid,
 			p3 : comment
 		}).success(function(status) {
-			if (status == 'OK') {
-
+			console.log(status);
+			if (status) {
 				$scope.commentText = ''
 				Comment.findComments({
 					itemId : $scope.selectedItem.ITEM_ID

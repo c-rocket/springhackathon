@@ -8,7 +8,6 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 			email : user.email,
 			pw : user.password
 		}, function(resp) {
-
 			if (resp.USER_ID != null) {
 				user.uid = resp.USER_ID
 				user.name = resp.USER_NAME
@@ -27,6 +26,8 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 					toaster.pop('error', "Login failed!")
 					$scope.user = ''
 				}
+			}else {
+				toaster.pop('error', "Login failed! Check Credentials")
 			}
 		});
 
@@ -39,7 +40,6 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 			pw : user.password
 		}
 		User.registerUser(newUser).then(function(user) {
-
 			if (user.data) {
 				user.uid = user.data.USER_ID
 				user.name = user.data.USER_NAME
@@ -51,7 +51,7 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 					var currentuser = User.getCurrentUser()
 					$rootScope.$broadcast('userEvent', user)
 					toaster.pop('success', "Registered!")
-					$location.path('/browse')
+					$location.path(baseUrl + '/browse')
 				} else {
 					toaster.pop('error', "Signup failed!")
 					$scope.user = ''
@@ -68,11 +68,11 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 			email : user.email
 		}
 		User.changePassword(payload).success(function(status) {
-			if (status == 'OK') {
-				toaster.pop('success', 'Password changed!')
-				$scope.user = ''
-			} else if (status == 401) {
+			if (status == 401) {
 				toaster.pop('failed', 'Password change failed! Retry')
+			}else{
+				toaster.pop('success', 'Password changed!')
+				$scope.user = '';
 			}
 		})
 
