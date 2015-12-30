@@ -49,11 +49,7 @@
 		</beans:property>
 	</beans:bean>
 
-	<crypt:symmetricCipherer id="encrypter"
-		keyAlgorithm="DESede" cipherAlgorithm="DESede/CBC/PKCS5Padding"
-		provider="BC" mode="ENCRYPT" />
-	<crypt:symmetricCipherer id="decrypter"
-		keyAlgorithm="DESede" cipherAlgorithm="DESede/CBC/PKCS5Padding"
-		provider="BC" mode="DECRYPT" />
+	<crypt:asymmetricCipherer id="encrypter" key-ref="superSecretKey" mode="ENCRYPT" />
+	<crypt:asymmetricCipherer id="decrypter" key-ref="superSecretKey" mode="DECRYPT"/>
 
 </beans:beans>

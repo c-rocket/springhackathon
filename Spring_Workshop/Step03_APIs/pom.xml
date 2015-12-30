@@ -10,6 +10,7 @@
 	<properties>
 		<java-version>1.7</java-version>
 		<org.springframework-version>4.2.1.RELEASE</org.springframework-version>
+		<org.springsecurity-version>4.0.3.RELEASE</org.springsecurity-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<powermock.version>1.6.3</powermock.version>
@@ -63,10 +64,11 @@
 
 		<!-- Crypto -->
 		<dependency>
-			<groupId>com.google.code.spring-crypto-utils</groupId>
-			<artifactId>spring-crypto-utils</artifactId>
-			<version>1.4.0</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>${org.springsecurity-version}</version>
 		</dependency>
+
 
 		<!-- Logging -->
 		<dependency>

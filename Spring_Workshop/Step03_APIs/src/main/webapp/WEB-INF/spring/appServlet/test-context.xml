@@ -29,11 +29,8 @@
 		<beans:property name="password" value="${db.password}" />
 	</beans:bean>
 
-	<crypt:symmetricCipherer id="encrypter"
-		keyAlgorithm="DESede" cipherAlgorithm="DESede/CBC/PKCS5Padding"
-		provider="BC" mode="ENCRYPT" />
-	<crypt:symmetricCipherer id="decrypter"
-		keyAlgorithm="DESede" cipherAlgorithm="DESede/CBC/PKCS5Padding"
-		provider="BC" mode="DECRYPT" />
+	<crypt:symmetricCipherer id="encrypter" mode="ENCRYPT" />
+	<crypt:symmetricCipherer id="decrypter" mode="DECRYPT" />
+	<crypt:symmetricKeyGenerator id="generator"/>
 
 </beans:beans>
