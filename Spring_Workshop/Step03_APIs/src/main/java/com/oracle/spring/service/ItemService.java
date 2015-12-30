@@ -1,5 +1,6 @@
 package com.oracle.spring.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -21,22 +22,22 @@ public class ItemService {
 		return dao.getItems();
 	}
 
-	public Map<String, Object> createItem(String title, String description, String postedBy, String status,
-			String price) {
+	public Map<String, Object> createItem(String title, String description, BigDecimal postedBy, String status,
+			BigDecimal price) {
 		dao.create(title, description, postedBy, status, price);
 		return dao.getItemByName(title, postedBy);
 	}
 
-	public Map<String, Object> getItem(Integer id) {
+	public Map<String, Object> getItem(BigDecimal id) {
 		return dao.getItembyId(id);
 	}
 
-	public Boolean deleteItem(Integer id) {
+	public Boolean deleteItem(BigDecimal id) {
 		return dao.deleteItem(id);
 	}
 
-	public Boolean updateItem(Integer itemId, String title, String description, String purchasedBy, Double price,
-			String status) {
+	public Boolean updateItem(BigDecimal itemId, String title, String description, BigDecimal purchasedBy,
+			BigDecimal price, String status) {
 		return dao.updateItem(itemId, title, description, purchasedBy, price, status);
 	}
 

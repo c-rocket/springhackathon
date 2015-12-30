@@ -1,5 +1,6 @@
 package com.oracle.spring.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -37,16 +38,16 @@ public class ItemController {
 		return service.getItems();
 	}
 
-	@RequestMapping(value = "/item/${itemId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getItem(@PathVariable(value = "itemId") Integer id) {
+	public Map<String, Object> getItem(@PathVariable(value = "itemId") BigDecimal id) {
 		logger.info("Getting items");
 		return service.getItem(id);
 	}
 
-	@RequestMapping(value = "/item/${itemId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Boolean deleteItem(@PathVariable(value = "itemId") Integer id) {
+	public Boolean deleteItem(@PathVariable(value = "itemId") BigDecimal id) {
 		logger.info("Getting items");
 		return service.deleteItem(id);
 	}
@@ -54,17 +55,18 @@ public class ItemController {
 	@RequestMapping(value = "/item", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> createItem(@RequestParam(value = "p1") String title,
-			@RequestParam(value = "p2") String description, @RequestParam(value = "p3") String postedBy,
-			@RequestParam(value = "p4") String status, @RequestParam(value = "p5") String price) {
+			@RequestParam(value = "p2") String description, @RequestParam(value = "p3") BigDecimal postedBy,
+			@RequestParam(value = "p4") String status, @RequestParam(value = "p5") BigDecimal price) {
 		logger.info("Getting items");
 		return service.createItem(title, description, postedBy, status, price);
 	}
 
-	@RequestMapping(value = "/item/${itemId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public Boolean updateItem(@PathVariable(value = "itemId") Integer itemId, @RequestParam(value = "p1") String title,
-			@RequestParam(value = "p2") String description, @RequestParam(value = "p3") String purchasedBy,
-			@RequestParam(value = "p4") Double price, @RequestParam(value = "p5") String status) {
+	public Boolean updateItem(@PathVariable(value = "itemId") BigDecimal itemId,
+			@RequestParam(value = "p1") String title, @RequestParam(value = "p2") String description,
+			@RequestParam(value = "p3") BigDecimal purchasedBy, @RequestParam(value = "p4") BigDecimal price,
+			@RequestParam(value = "p5") String status) {
 		logger.info("Getting items");
 		return service.updateItem(itemId, title, description, purchasedBy, price, status);
 	}

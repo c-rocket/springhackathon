@@ -1,5 +1,6 @@
 package com.oracle.spring.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -23,25 +24,25 @@ public class OfferController {
 	@Resource
 	private OfferService service;
 
-	@RequestMapping(value = "/offer/${itemId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/offer/{itemId}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Map<String, Object>> getOffers(@PathVariable(value = "itemId") Integer itemId) {
+	public List<Map<String, Object>> getOffers(@PathVariable(value = "itemId") BigDecimal itemId) {
 		logger.info("Getting offers for: " + itemId);
 		return service.getOffersForItem(itemId);
 	}
 
-	@RequestMapping(value = "/offer/${offerId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/offer/{offerId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Boolean updateOffer(@RequestParam(value = "p1") String status,
-			@RequestParam(value = "offerId") Integer offerId) {
+			@RequestParam(value = "offerId") BigDecimal offerId) {
 		logger.info("Updating Offer");
 		return service.updateOffer(offerId, status);
 	}
 
 	@RequestMapping(value = "/newOffer", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> createOffer(@RequestParam(value = "p1") Integer itemId,
-			@RequestParam(value = "p2") String offerBy, @RequestParam(value = "p2") Double amount) {
+	public Map<String, Object> createOffer(@RequestParam(value = "p1") BigDecimal itemId,
+			@RequestParam(value = "p2") BigDecimal offerBy, @RequestParam(value = "p2") BigDecimal amount) {
 		logger.info("Creating Offer");
 		return service.createOffer(itemId, offerBy, amount);
 	}

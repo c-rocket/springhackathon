@@ -53,7 +53,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/login/${email}/${password}", method = RequestMethod.POST)
+	@RequestMapping(value = "/login/{email}/{password}", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> login(@PathVariable(value = "email") String email,
 			@PathVariable(value = "password") String password) {

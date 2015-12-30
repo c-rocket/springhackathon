@@ -1,5 +1,6 @@
 package com.oracle.spring.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +29,13 @@ public class ItemDao {
 		return jdbcTemplate.queryForList(sql);
 	}
 
-	public void create(String title, String description, String postedBy, String status, String price) {
+	public Boolean create(String title, String description, BigDecimal postedBy, String status, BigDecimal price) {
 		String sql = "INSERT INTO items (item_title,item_desc,item_posted_by,item_status,item_price) "
 				+ "values (?,?,?,?,?)";
-		jdbcTemplate.update(sql, title, description, postedBy, status, price);
+		return jdbcTemplate.update(sql, title, description, postedBy, status, price) > 0;
 	}
 
-	public Map<String, Object> getItemByName(String title, String postedBy) {
+	public Map<String, Object> getItemByName(String title, BigDecimal postedBy) {
 		String sql = "select ITEMS.item_ID, ITEMS.item_TITLE, ITEMS.item_DESC,ITEMS.item_POST_DATE, "
 				+ "ITEMS.item_posted_by,ITEMS.item_bought_by,USERS.USER_GRAVATAR,ITEMS.item_PRICE, "
 				+ "ITEMS.item_STATUS from ITEMS, USERS where ITEMS.item_posted_by = USERS.USER_ID "
@@ -42,20 +43,20 @@ public class ItemDao {
 		return jdbcTemplate.queryForMap(sql, title, postedBy);
 	}
 
-	public Map<String, Object> getItembyId(Integer id) {
+	public Map<String, Object> getItembyId(BigDecimal id) {
 		String sql = "select ITEMS.item_ID, ITEMS.item_TITLE, ITEMS.item_DESC,ITEMS.item_POST_DATE, "
 				+ "ITEMS.item_posted_by,ITEMS.item_bought_by, USERS.USER_NAME, USERS.USER_GRAVATAR,ITEMS.item_PRICE, "
 				+ "ITEMS.item_STATUS from ITEMS, USERS where ITEMS.item_posted_by = USERS.USER_ID and " + "item_id =?";
 		return jdbcTemplate.queryForMap(sql, id);
 	}
 
-	public Boolean deleteItem(Integer id) {
+	public Boolean deleteItem(BigDecimal id) {
 		String sql = "DELETE from items WHERE item_id = ?";
 		return jdbcTemplate.update(sql, id) > 0;
 	}
 
-	public Boolean updateItem(Integer itemId, String title, String description, String purchasedBy, Double price,
-			String status) {
+	public Boolean updateItem(BigDecimal itemId, String title, String description, BigDecimal purchasedBy,
+			BigDecimal price, String status) {
 		String sql = "UPDATE items SET item_title = ?, item_desc = ?, item_bought_by = ?, item_price = ?,"
 				+ " item_status = ? WHERE item_id = ?";
 		return jdbcTemplate.update(sql, title, description, purchasedBy, price, status, itemId) > 0;

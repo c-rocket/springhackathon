@@ -1,5 +1,6 @@
 package com.oracle.spring.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -23,17 +24,17 @@ public class CommentController {
 	@Resource
 	private CommentService service;
 
-	@RequestMapping(value = "/comment/${itemId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment/{itemId}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Map<String, Object>> getComments(@PathVariable(value = "itemId") Integer itemId) {
+	public List<Map<String, Object>> getComments(@PathVariable(value = "itemId") BigDecimal itemId) {
 		logger.info("Getting comments for: " + itemId);
 		return service.getCommentsForItem(itemId);
 	}
 
 	@RequestMapping(value = "/newComment", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean createComment(@RequestParam(value = "p1") Integer itemId,
-			@RequestParam(value = "p2") String postedBy, @RequestParam(value = "p3") String text) {
+	public Boolean createComment(@RequestParam(value = "p1") BigDecimal itemId,
+			@RequestParam(value = "p2") BigDecimal postedBy, @RequestParam(value = "p3") String text) {
 		logger.info("Getting items");
 		return service.createComment(itemId, postedBy, text);
 	}

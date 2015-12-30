@@ -20,9 +20,9 @@ public class UserDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public void createUser(String username, String email, byte[] hash, String gravatar) {
+	public void createUser(String username, String email, String hash, String gravatar) {
 		String sql = "INSERT INTO users (user_name, user_password, user_email, user_gravatar) VALUES (?,?,?,?)";
-		jdbcTemplate.update(sql, username, email, hash, gravatar);
+		jdbcTemplate.update(sql, username, hash, email, gravatar);
 	}
 
 	public Map<String, Object> getUserByEmail(String email) {
@@ -30,7 +30,7 @@ public class UserDao {
 		return jdbcTemplate.queryForMap(sql, email);
 	}
 
-	public void update(String email, byte[] newHash) {
+	public void update(String email, String newHash) {
 		String sql = "Update users set user_password = ? where user_email = ?";
 		jdbcTemplate.update(sql, newHash, email);
 	}

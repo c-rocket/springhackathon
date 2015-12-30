@@ -1,5 +1,6 @@
 package com.oracle.spring.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,11 @@ public class CommentService {
 	@Resource
 	private CommentDao dao;
 
-	public List<Map<String, Object>> getCommentsForItem(Integer itemId) {
+	public List<Map<String, Object>> getCommentsForItem(BigDecimal itemId) {
 		return dao.getCommentsForItem(itemId);
 	}
 
-	public Boolean createComment(Integer itemId, String postedBy, String text) {
+	public Boolean createComment(BigDecimal itemId, BigDecimal postedBy, String text) {
 		return dao.createComment(itemId, postedBy, text);
 	}
 

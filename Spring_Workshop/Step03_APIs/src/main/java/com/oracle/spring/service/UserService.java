@@ -31,8 +31,8 @@ public class UserService {
 	private Cipherer decrypter;
 
 	public Boolean changePassword(String email, String oldpw, String newpw) {
-		byte[] oldHash = encrypter.encrypt(key, iv, oldpw.getBytes());
-		byte[] newHash = encrypter.encrypt(key, iv, newpw.getBytes());
+		String oldHash = String.valueOf(encrypter.encrypt(key, iv, oldpw.getBytes()));
+		String newHash = String.valueOf(encrypter.encrypt(key, iv, newpw.getBytes()));
 		Map<String, Object> user = dao.getUserByEmail(email);
 		if (oldHash.equals(user.get("USER_PASSWORD"))) {
 			dao.update(email, newHash);
@@ -42,7 +42,7 @@ public class UserService {
 	}
 
 	public Map<String, Object> createUser(String username, String email, String password) {
-		byte[] hash = encrypter.encrypt(key, iv, password.getBytes());
+		String hash = String.valueOf(encrypter.encrypt(key, iv, password.getBytes()));
 		String gravatar = Gravatar.url(email);
 		dao.createUser(username, email, hash, gravatar);
 		return dao.getUserByEmail(email);

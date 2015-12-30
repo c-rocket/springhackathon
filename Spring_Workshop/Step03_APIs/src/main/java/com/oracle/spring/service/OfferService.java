@@ -1,5 +1,6 @@
 package com.oracle.spring.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -17,15 +18,15 @@ public class OfferService {
 	@Resource
 	private OfferDao dao;
 
-	public List<Map<String, Object>> getOffersForItem(Integer itemId) {
+	public List<Map<String, Object>> getOffersForItem(BigDecimal itemId) {
 		return dao.getOffersForItem(itemId);
 	}
 
-	public Boolean updateOffer(Integer offerId, String status) {
+	public Boolean updateOffer(BigDecimal offerId, String status) {
 		return dao.updateOffer(offerId, status);
 	}
 
-	public Map<String, Object> createOffer(Integer itemId, String offerBy, Double amount) {
+	public Map<String, Object> createOffer(BigDecimal itemId, BigDecimal offerBy, BigDecimal amount) {
 		if (dao.createOffer(itemId, offerBy, amount)) {
 			return dao.getCreatedOffer(itemId, offerBy, amount);
 		}

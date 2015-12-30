@@ -49,8 +49,6 @@
 		</beans:property>
 	</beans:bean>
 
-
-
 	<crypt:symmetricCipherer id="encrypter"
 		keyAlgorithm="DESede" cipherAlgorithm="DESede/CBC/PKCS5Padding"
 		provider="BC" mode="ENCRYPT" />
