@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="modal fade" id="ediModal" ng-controller="itemController">
 	<div class="modal-dialog">
 		<div class="modal-content">

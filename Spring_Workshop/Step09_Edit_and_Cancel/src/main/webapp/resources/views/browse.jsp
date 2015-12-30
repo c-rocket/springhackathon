@@ -1,18 +1,3 @@
-<!-- Start with the step 09 code. explain what list-group, list-group-item, item-title etc CSS classes do. Play a bit
-Then add class="row" and the top and show what happens. 
-Next class="col-md-offset-1"  --- leaves a 1 col space to the left. Talk about the 12 col bootstrap grid layout. Then add col-md-4
-Remove the ITEM_DESC span...too much detail in master view
-Next look at the final product and add some additional details to the master view such as 
-
-Next add the gravatar line and show how ugly it looks by default. Then add the bootstrap class row-picture to the div
-It appears as a square. Then apply the circle class the img tag. It appears as a circle ( this was all bootstrap!)
-
-Edit the ng-repeat tag and add the row-content and list-group-item-heading class
-
-Note: 
-if there is a gap under the navbar, its because of the navbar margin_bottom property. Set that to 0px in css
-If the color of price etc is NOT BLACK, add css for anchor tag 
- -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="row">
@@ -96,7 +81,7 @@ If the color of price etc is NOT BLACK, add css for anchor tag
 									</li>
 									<li class="divider"></li>
 									<li>
-										<a href="">CANCEL POST</a>
+										<a href="" ng-click="cancelItem(selectedItem)">CANCEL POST</a>
 									</li>
 								</ul>
 							</div>
@@ -204,12 +189,9 @@ If the color of price etc is NOT BLACK, add css for anchor tag
 	</div>
 
 
-
-
-
 </div>
 
-
+<div ng-include="'<c:url value='/resources/views/partials/edit.jsp'/>'"></div>
 
 
 
