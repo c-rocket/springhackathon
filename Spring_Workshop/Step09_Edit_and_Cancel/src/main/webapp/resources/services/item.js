@@ -29,7 +29,7 @@ app.factory('Item', function($resource) {
 app.factory('Items', function($resource) {
 	console.log('Items factory loaded')
 
-	return $resource(baseUrl + 'items', {}, {
+	return $resource(baseUrl + 'item', {}, {
 		'getAllItems' : {
 			method : 'GET',
 			isArray : true

@@ -24,7 +24,7 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 				console.log('getCurrentUser returned: ', currentuser)
 				$rootScope.$broadcast('userEvent', user)
 				toaster.pop('success', "Logged in!")
-				$location.path('/browse')
+				$location.path(baseUrl + '/browse')
 			} else {
 
 				toaster.pop('error', "Login failed!")
