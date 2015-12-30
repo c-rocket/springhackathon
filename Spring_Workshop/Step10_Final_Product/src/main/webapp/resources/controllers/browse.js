@@ -20,7 +20,7 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 
 			$scope.isItemPoster = (item.ITEM_POSTED_BY == $scope.uid)
 			$scope.isSold = (item.ITEM_STATUS == 'sold')
-			$http.get('/offer/' + item.ITEM_ID).success(function(offers) {
+			$http.get(baseUrl + '/offer/' + item.ITEM_ID).success(function(offers) {
 				$scope.offers = offers
 				for (var i = 0; i < $scope.offers.length; i++) {
 					if ($scope.offers[i].USER_NAME == $scope.currentUser) {
@@ -50,7 +50,7 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 	} // ------end routeParams.itemId
 
 	$scope.makeOffer = function(offer) {
-		$http.post('/newOffer', {
+		$http.post(baseUrl + '/newOffer', {
 			p1 : $scope.selectedItem.ITEM_ID,
 			p2 : $scope.uid,
 			p3 : offer.amount
@@ -66,7 +66,7 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 	};
 
 	$scope.addComment = function(comment) {
-		$http.post('/newComment', {
+		$http.post(baseUrl + '/newComment', {
 			p1 : $scope.selectedItem.ITEM_ID,
 			p2 : $scope.uid,
 			p3 : comment
@@ -97,7 +97,7 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 
 	$scope.cancelItem = function(item) {
 		item.ITEM_STATUS = 'cancelled'
-		var url = '/item/' + item.ITEM_ID
+		var url = baseUrl + '/item/' + item.ITEM_ID
 		var payload = {
 			p1 : item.ITEM_TITLE,
 			p2 : item.ITEM_DESC,
@@ -118,14 +118,14 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 	}
 
 	$scope.acceptOffer = function(offer) {
-		var offerUrl = '/offer/' + offer.OFFER_ID
+		var offerUrl = baseUrl + '/offer/' + offer.OFFER_ID
 		var offerPayload = {
 			p1 : 'accepted'
 		}
 		var selectedItem = $scope.selectedItem
 		OfferSvc.updateOffer(offerUrl, offerPayload).success(function(status) {
 
-			var itemUrl = '/item/' + selectedItem.ITEM_ID
+			var itemUrl = baseUrl + '/item/' + selectedItem.ITEM_ID
 			var itemPayload = {
 				p1 : selectedItem.ITEM_TITLE,
 				p2 : selectedItem.ITEM_DESC,
@@ -138,7 +138,7 @@ app.controller('BrowseController', function($location, $http, $rootScope, $scope
 			getItems.editItem(itemUrl, itemPayload).success(function(status) {
 				$scope.isAvailable = false;
 				toaster.pop('success', "Offer accepted!");
-				$location.path('/browse/' + selectedItem.ITEM_ID)
+				$location.path(baseUrl + '/browse/' + selectedItem.ITEM_ID)
 			})
 		})
 	}; // ---end acceptOffer

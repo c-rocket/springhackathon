@@ -3,11 +3,11 @@
 app.factory('Auth', [ '$resource', function($resource) {
 
 	return {
-		newUser : $resource('/user', {}, {
+		newUser : $resource(baseUrl + '/user', {}, {
 			method : 'POST'
 		}),
 
-		login : $resource('/login/:email/:pw', {}, {
+		login : $resource(baseUrl + '/login/:email/:pw', {}, {
 			method : 'GET',
 			isArray : false
 		}),
@@ -28,7 +28,7 @@ app.factory('User', function($http) {
 
 		registerUser : function(user) {
 
-			return $http.post('/user', user)
+			return $http.post(baseUrl + '/user', user)
 
 		},
 
@@ -50,7 +50,7 @@ app.factory('User', function($http) {
 		},
 
 		changePassword : function(payload) {
-			return $http.post('/userpass', payload)
+			return $http.post(baseUrl + '/userpass', payload)
 		}
 
 	}

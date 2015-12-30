@@ -11,7 +11,7 @@ app.factory('getItems', function(Items, $http) {
 		all : items,
 
 		createItem : function(item) {
-			$http.post('/item', item).success(function(item) {
+			$http.post(baseUrl + '/item', item).success(function(item) {
 				console.log('item api returned', item)
 				items.push(item)
 				console.log('http recd', item)
@@ -55,7 +55,7 @@ app.factory('getItems', function(Items, $http) {
 app.factory('Items', function($resource) {
 	console.log('Items factory loaded')
 
-	return $resource('/item', {}, {
+	return $resource(baseUrl + '/item', {}, {
 		'getAllItems' : {
 			method : 'GET',
 			isArray : true
@@ -71,7 +71,7 @@ app.factory('Items', function($resource) {
 app.factory('Item', function($resource) {
 
 	console.log('Item factory loaded')
-	return $resource('/item/:itemId', {}, {
+	return $resource(baseUrl + '/item/:itemId', {}, {
 		'findItem' : {
 			method : 'GET'
 		},
