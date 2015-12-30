@@ -3,7 +3,6 @@ var baseUrl;
 var app = angular.module('aOne', [ 'ngRoute' ])
 
 app.controller('browseController', function($http, $scope) {
-	baseUrl = angular.element($('#baseUrl')).val();
 
 	var itemStatus = $http.get(baseUrl + '/items').then(function(response, err) {
 
@@ -19,8 +18,9 @@ app.controller('browseController', function($http, $scope) {
 });
 
 app.config(function($routeProvider) {
+	baseUrl = angular.element($('#baseUrl')).val();
 	$routeProvider.when('/', {
-		templateUrl : angular.element($('#baseUrl')).val() + 'resources/views/browse.jsp',
+		templateUrl : baseUrl + 'resources/views/browse.jsp',
 		controller : 'browseController'
 	})
 
