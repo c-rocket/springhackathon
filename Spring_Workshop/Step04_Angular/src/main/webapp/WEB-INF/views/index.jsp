@@ -32,6 +32,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
 	<script type="text/javascript" src="<c:url value='/resources/app.js'/>"></script>
-
+	<input type="hidden" value="<c:url value='/'/>" id="baseUrl" />
 </body>
 </html>
