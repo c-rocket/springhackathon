@@ -4,10 +4,11 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Gravatar {
-	private static final Logger logger = Logger.getLogger(Gravatar.class);
+	private static final Logger logger = LoggerFactory.getLogger(Gravatar.class);
 
 	public static String url(String message) {
 		return "https://www.gravatar.com/avatar" + md5Hex(message) + ".jpg?d=identicon";
