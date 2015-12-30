@@ -6,7 +6,7 @@
 app.factory('Offer', function($resource,$http) {
 
 	console.log('Offer factory loaded')
-return $resource('/offer/:itemId', {},
+return $resource(baseUrl + '/offer/:itemId', {},
     {
         'findOffers': {method: 'GET', isArray:true},
         'deleteOffer': {method: 'DELETE',params: {taskId: '@id'}},

@@ -10,24 +10,22 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 		}, function(resp) {
 			console.log('Auth service returned:', resp)
 
-			if (resp.rows) {
-				user.uid = resp.rows[0].USER_ID
-				user.name = resp.rows[0].USER_NAME
-				user.gravatar = resp.rows[0].USER_GRAVATAR
-				user.email = resp.rows[0].USER_EMAIL
+			if (resp.USER_ID != null) {
+				user.uid = resp.USER_ID
+				user.name = resp.USER_NAME
+				user.gravatar = resp.USER_GRAVATAR
+				user.email = resp.USER_EMAIL
 				user.signedIn = true
 				User.setCurrentUser(user)
 				if (User.isSignedIn) {
 					console.log('Signed in!')
 				}
-				;
 				var currentuser = User.getCurrentUser()
 				console.log('getCurrentUser returned: ', currentuser)
 				$rootScope.$broadcast('userEvent', user)
 				toaster.pop('success', "Logged in!")
 				$location.path('/browse')
 			} else {
-
 				toaster.pop('error', "Login failed!")
 				$scope.user = ''
 			}
@@ -60,7 +58,7 @@ app.controller('AuthController', function($q, $scope, $rootScope, $location, toa
 				console.log('getCurrentUser returned: ', currentuser)
 				$rootScope.$broadcast('userEvent', user)
 				toaster.pop('success', "Registered!")
-				$location.path('/browse')
+				$location.path(baseUrl + '/browse')
 			} else {
 				toaster.pop('error', "Signup failed!")
 				$scope.user = ''

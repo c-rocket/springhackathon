@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav class="navbar navbar-info" ng-controller="NavController">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-     <div> <a href="#/" class="logo"><img src="/images/logo2.png"></a></div>
+     <div> <a href="#/" class="logo"><img src="<c:url value='/resources/images/logo2.png'/>"></a></div>
      <!--  <a class="navbar-brand" href="#/">an Online marketplace</a> -->
     </div>
 

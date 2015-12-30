@@ -3,7 +3,7 @@
 
 app.factory('Comment', function($resource) {
 
-return $resource('/comment/:itemId', {},
+return $resource(baseUrl + '/comment/:itemId', {},
     {
         'addComment': {method: 'POST'},
         'findComments': {method: 'GET', isArray:true},

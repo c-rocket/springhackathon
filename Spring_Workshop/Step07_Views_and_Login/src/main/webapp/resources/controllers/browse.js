@@ -3,7 +3,7 @@
 app.controller('browseController', function($http, $scope, $routeParams, Item, Comment) {
 	$scope.searchItem = ''
 
-	var itemStatus = $http.get('/item').then(function(response, err) {
+	var itemStatus = $http.get(baseUrl + '/items').then(function(response, err) {
 
 		if (err) {
 			console.log('error is', err)
@@ -26,7 +26,7 @@ app.controller('browseController', function($http, $scope, $routeParams, Item, C
 			console.log('selecteditem is', $scope.selectedItem)
 		})
 
-		$http.get('/offer/' + $routeParams.itemId).success(function(offers) {
+		$http.get(baseUrl + '/offer/' + $routeParams.itemId).success(function(offers) {
 			$scope.offers = offers
 			console.log('offers for selecteditem=', offers)
 		})
