@@ -10,12 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.spring.service.ItemService;
+import com.oracle.spring.util.BigDecimalUtil;
 
 @Controller
 public class ItemController {
@@ -54,20 +55,28 @@ public class ItemController {
 
 	@RequestMapping(value = "/item", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> createItem(@RequestParam(value = "p1") String title,
-			@RequestParam(value = "p2") String description, @RequestParam(value = "p3") BigDecimal postedBy,
-			@RequestParam(value = "p4") String status, @RequestParam(value = "p5") BigDecimal price) {
-		logger.info("Getting items");
+	public Map<String, Object> createItem(@RequestBody Map<String, Object> item) {
+		String title = (String) item.get("p1");
+		String description = (String) item.get("p2");
+		BigDecimal postedBy = BigDecimalUtil.parse(item.get("p3"));
+		String status = (String) item.get("p4");
+		BigDecimal price = BigDecimalUtil.parse(item.get("p5"));
+		logger.info("Creating Item: " + title + ", " + description + ", " + postedBy + ", " + status + ", " + price);
 		return service.createItem(title, description, postedBy, status, price);
 	}
 
 	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public Boolean updateItem(@PathVariable(value = "itemId") BigDecimal itemId,
-			@RequestParam(value = "p1") String title, @RequestParam(value = "p2") String description,
-			@RequestParam(value = "p3") BigDecimal purchasedBy, @RequestParam(value = "p4") BigDecimal price,
-			@RequestParam(value = "p5") String status) {
-		logger.info("Getting items");
+	public Boolean updateItem(@PathVariable(value = "itemId") Integer itemIdInt,
+			@RequestBody Map<String, Object> item) {
+		BigDecimal itemId = new BigDecimal(itemIdInt);
+		String title = (String) item.get("p1");
+		String description = (String) item.get("p2");
+		BigDecimal purchasedBy = BigDecimalUtil.parse(item.get("p3"));
+		BigDecimal price = BigDecimalUtil.parse(item.get("p4"));
+		String status = (String) item.get("p5");
+		logger.info("Updating Item: " + itemId + ", " + title + ", " + description + ", " + purchasedBy + ", " + status
+				+ ", " + price);
 		return service.updateItem(itemId, title, description, purchasedBy, price, status);
 	}
 }

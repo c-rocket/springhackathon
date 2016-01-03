@@ -10,12 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.spring.service.CommentService;
+import com.oracle.spring.util.BigDecimalUtil;
 
 @Controller
 public class CommentController {
@@ -26,16 +27,20 @@ public class CommentController {
 
 	@RequestMapping(value = "/comment/{itemId}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Map<String, Object>> getComments(@PathVariable(value = "itemId") BigDecimal itemId) {
+	public List<Map<String, Object>> getComments(@PathVariable(value = "itemId") Integer itemIdInt) {
+		BigDecimal itemId = BigDecimalUtil.parse(itemIdInt);
 		logger.info("Getting comments for: " + itemId);
 		return service.getCommentsForItem(itemId);
 	}
 
 	@RequestMapping(value = "/newComment", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean createComment(@RequestParam(value = "p1") BigDecimal itemId,
-			@RequestParam(value = "p2") BigDecimal postedBy, @RequestParam(value = "p3") String text) {
-		logger.info("Getting items");
+	public Boolean createComment(@RequestBody Map<String, Object> comment) {
+		BigDecimal itemId = BigDecimalUtil.parse(comment.get("p1"));
+		BigDecimal postedBy = BigDecimalUtil.parse(comment.get("p2"));
+		String text = (String) comment.get("p3");
+
+		logger.info("Creating Comment: " + itemId + ", " + postedBy + ", " + text);
 		return service.createComment(itemId, postedBy, text);
 	}
 }

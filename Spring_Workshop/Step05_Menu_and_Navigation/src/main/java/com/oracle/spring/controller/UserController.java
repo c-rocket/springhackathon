@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.spring.controller.exception.CreationErrorException;
@@ -24,11 +24,13 @@ public class UserController {
 	@Resource
 	private UserService service;
 
-	@RequestMapping(value = "/userpass", method = RequestMethod.GET)
+	@RequestMapping(value = "/userpass", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean changePassword(@RequestParam(value = "email") String email,
-			@RequestParam(value = "username") String oldpw, @RequestParam(value = "username") String newpw) {
-		logger.info("Getting items");
+	public Boolean changePassword(@RequestBody Map<String, Object> map) {
+		String email = (String) map.get("email");
+		String oldpw = (String) map.get("oldpw");
+		String newpw = (String) map.get("newpw");
+		logger.info("Updating password for " + email);
 		try {
 			if (service.changePassword(email, oldpw, newpw)) {
 				return true;
@@ -43,9 +45,11 @@ public class UserController {
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> createUser(@RequestParam(value = "username") String username,
-			@RequestParam(value = "email") String email, @RequestParam(value = "pw") String password) {
-		logger.info("Getting items");
+	public Map<String, Object> createUser(@RequestBody Map<String, Object> user) {
+		String username = (String) user.get("username");
+		String email = (String) user.get("email");
+		String password = (String) user.get("pw");
+		logger.info("Creating User: " + username + ", " + email + ", " + password);
 		try {
 			return service.createUser(username, email, password);
 		} catch (Exception e) {
@@ -54,21 +58,21 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/login/{email}/{password}", method = RequestMethod.POST)
+	@RequestMapping(value = "/login/{email}/{password}", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> login(@PathVariable(value = "email") String email,
 			@PathVariable(value = "password") String password) {
-		logger.info("Getting items");
+		logger.info("Loggin In");
 		try {
 			Map<String, Object> login = service.login(email, password);
 			if (login != null) {
 				return login;
 			} else {
-				throw new UnAuthorizedException();
+				return null;
 			}
 		} catch (Exception e) {
 			logger.error("Error creating user", e);
-			throw new UnAuthorizedException(e);
+			return null;
 		}
 	}
 }

@@ -11,7 +11,7 @@ public class Gravatar {
 	private static final Logger logger = LoggerFactory.getLogger(Gravatar.class);
 
 	public static String url(String message) {
-		return "https://www.gravatar.com/avatar" + md5Hex(message) + ".jpg?d=identicon";
+		return "https://www.gravatar.com/avatar/" + md5Hex(message) + ".jpg?d=identicon";
 	}
 
 	private static String hex(byte[] array) {

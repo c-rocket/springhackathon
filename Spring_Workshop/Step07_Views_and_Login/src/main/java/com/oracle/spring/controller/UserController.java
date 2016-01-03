@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.spring.controller.exception.CreationErrorException;
@@ -25,11 +24,13 @@ public class UserController {
 	@Resource
 	private UserService service;
 
-	@RequestMapping(value = "/userpass", method = RequestMethod.GET)
+	@RequestMapping(value = "/userpass", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean changePassword(@RequestParam(value = "email") String email,
-			@RequestParam(value = "username") String oldpw, @RequestParam(value = "username") String newpw) {
-		logger.info("Getting items");
+	public Boolean changePassword(@RequestBody Map<String, Object> map) {
+		String email = (String) map.get("email");
+		String oldpw = (String) map.get("oldpw");
+		String newpw = (String) map.get("newpw");
+		logger.info("Updating password for " + email);
 		try {
 			if (service.changePassword(email, oldpw, newpw)) {
 				return true;

@@ -10,12 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.spring.service.OfferService;
+import com.oracle.spring.util.BigDecimalUtil;
 
 @Controller
 public class OfferController {
@@ -33,17 +34,22 @@ public class OfferController {
 
 	@RequestMapping(value = "/offer/{offerId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public Boolean updateOffer(@RequestParam(value = "p1") String status,
-			@RequestParam(value = "offerId") BigDecimal offerId) {
-		logger.info("Updating Offer");
+	public Boolean updateOffer(@PathVariable(value = "offerId") Integer offerIdInt,
+			@RequestBody Map<String, Object> update) {
+		String status = (String) update.get("p1");
+		BigDecimal offerId = BigDecimalUtil.parse(offerIdInt);
+		logger.info("Updating Offer: " + offerId);
 		return service.updateOffer(offerId, status);
 	}
 
 	@RequestMapping(value = "/newOffer", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> createOffer(@RequestParam(value = "p1") BigDecimal itemId,
-			@RequestParam(value = "p2") BigDecimal offerBy, @RequestParam(value = "p2") BigDecimal amount) {
-		logger.info("Creating Offer");
+	public Map<String, Object> createOffer(@RequestBody Map<String, Object> offer) {
+		BigDecimal itemId = BigDecimalUtil.parse(offer.get("p1"));
+		BigDecimal offerBy = BigDecimalUtil.parse(offer.get("p2"));
+		BigDecimal amount = BigDecimalUtil.parse(offer.get("p3"));
+
+		logger.info("Creating Offer: " + itemId + ", " + offerBy + ", " + amount);
 		return service.createOffer(itemId, offerBy, amount);
 	}
 }
